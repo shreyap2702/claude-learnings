@@ -14,3 +14,16 @@ a minimal pytorch example: generate 1000 random 2d points and label each 1 if it
 *2026-09-26 10:47*
 
 3d printing software falls into three stages: modeling (making the design), slicing (turning the model into gcode the printer understands), and extras (repair, remote control, model libraries). Modeling tools: Tinkercad is free, browser-based, and drag-and-drop, which makes it the best starting point. Fusion (Autodesk) and Onshape are parametric CAD tools for precise functional parts; Fusion has a free personal-use license and Onshape runs fully in the browser. FreeCAD is a free, open source parametric CAD tool with a steeper learning curve. Blender is free and suited to organic or artistic models like figurines, but not precise mechanical parts. OpenSCAD lets you build models by writing code. Slicers: Ultimaker Cura (free, works with most printers), PrusaSlicer (free, works with non-Prusa printers too), Bambu Studio (for Bambu Lab printers), and OrcaSlicer (open source fork of Bambu Studio that supports many printers). Extras: Meshmixer or Microsoft 3D Builder repair broken STL files, OctoPrint allows remote printer control via a Raspberry Pi, and Printables, Thingiverse, and MakerWorld offer ready-made models. Suggested learning path: download a model, slice it in Cura or OrcaSlicer, and print it, then learn Tinkercad and move to Fusion or Onshape for precise parts. Simple beginner designs to try: a name keychain, phone stand, cable clip, pen holder, coaster, bookmark, headphone hook, a small box with a lid, a desk nameplate, and a cookie cutter. For a box lid, add about 0.2-0.4 mm of clearance so it fits. Design tips: keep flat surfaces on the bottom to avoid supports, avoid overhangs steeper than about 45 degrees, keep walls at least 1.2-2 mm thick, and start with small prints. A good progression is the keychain first, then the box with a lid, since getting the fit right teaches tolerances.
+
+## python decorators
+*2026-09-26 17:34*
+
+what it is: a decorator is a function that takes another function, wraps extra behavior around it, and returns a new function. it lets you reuse logic like logging, timing or auth checks without editing the original function.
+
+why it works: in python, functions are objects. you can pass them into other functions, return them, and assign them to variables, which is exactly what a decorator does.
+
+the @ syntax: writing @my_decorator above def greet() is just a shortcut for greet = my_decorator(greet). inside, the decorator defines a wrapper function that runs code before and after calling the original, then returns wrapper.
+
+making it work for any function: use *args, **kwargs in the wrapper so it accepts any arguments, and return the original function's result so nothing gets lost. add @functools.wraps(func) on the wrapper so the function keeps its real name and docstring.
+
+where you see them: @property, @staticmethod, @classmethod in classes, @app.get() in fastapi, @lru_cache for caching, and @pytest.fixture in tests. the next level is decorators with their own arguments like @retry(times=3), which adds one more layer of wrapping.
