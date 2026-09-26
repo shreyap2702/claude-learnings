@@ -1,0 +1,11 @@
+# My Learning Log
+
+## what is pytorch
+*2026-09-26 09:50*
+
+pytorch is an open-source deep learning framework originally built by meta's ai research lab and now run by the pytorch foundation under the linux foundation. its two core pieces are tensors, which are like numpy arrays that can run on a gpu, and autograd, which automatically computes gradients so you can train neural networks by adjusting weights to reduce error. pytorch uses eager execution, meaning code runs line by line like normal python, so you can print values, use regular loops and if statements, and debug with standard tools. this is a big reason it took over research compared to older static-graph frameworks like early tensorflow, and most papers and open models (including much of the hugging face ecosystem) are written in it. a good learning path is: tensors and basic ops, then autograd, then building models with torch.nn and training them with torch.optim, then writing training loops with DataLoader, and later things like fine-tuning pretrained models, torch.compile, and pytorch lightning. the official 'learn the basics' tutorial on pytorch.org is a solid starting point.
+
+## simple neural network in pytorch
+*2026-09-26 09:50*
+
+a minimal pytorch example: generate 1000 random 2d points and label each 1 if it lies inside the unit circle, else 0. the model is nn.Sequential(nn.Linear(2, 16), nn.ReLU(), nn.Linear(16, 1)), where Linear is a fully connected layer and ReLU adds the non-linearity needed to learn a curved decision boundary. the loss is nn.BCEWithLogitsLoss, used for binary classification; it applies sigmoid internally, so the model outputs raw logits. the optimizer is torch.optim.Adam(model.parameters(), lr=0.01). the training loop repeats the same five steps found in almost every pytorch project: forward pass (logits = model(X)), compute loss, optimizer.zero_grad() to clear old gradients, loss.backward() so autograd computes gradients, and optimizer.step() to update weights. for evaluation, wrap code in torch.no_grad() to turn off gradient tracking, then threshold logits at 0 to get predictions; this example reaches roughly 95%+ accuracy after 500 epochs. the natural next step is rewriting the model as a class that extends nn.Module, which is how most real pytorch code is structured.
