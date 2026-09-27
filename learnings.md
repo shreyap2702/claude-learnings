@@ -27,3 +27,8 @@ the @ syntax: writing @my_decorator above def greet() is just a shortcut for gre
 making it work for any function: use *args, **kwargs in the wrapper so it accepts any arguments, and return the original function's result so nothing gets lost. add @functools.wraps(func) on the wrapper so the function keeps its real name and docstring.
 
 where you see them: @property, @staticmethod, @classmethod in classes, @app.get() in fastapi, @lru_cache for caching, and @pytest.fixture in tests. the next level is decorators with their own arguments like @retry(times=3), which adds one more layer of wrapping.
+
+## why octopuses have three hearts
+*2026-09-27 16:41*
+
+octopuses have three hearts. two of them, called branchial hearts, pump blood through the gills to pick up oxygen. the third, the systemic heart, pumps that oxygenated blood to the rest of the body. their blood is blue because it uses hemocyanin, a copper-based protein, instead of the iron-based hemoglobin humans use. hemocyanin carries oxygen less efficiently, which is part of why they need the extra pumping power. a weird detail: the systemic heart actually stops beating while the octopus swims, which is one reason they prefer crawling and tire out quickly when swimming.
